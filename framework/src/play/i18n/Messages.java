@@ -169,12 +169,11 @@ public class Messages {
      * @return messages as a {@link java.util.Properties java.util.Properties}
      */
     public static Properties all(String locale) {
-        if(locale == null || "".equals(locale))
-            return defaults;
-        Properties properties =  locales.get(locale);
-        if(properties != null)
-            return properties;
-        return defaults;
+       if(locale == null || "".equals(locale) 
+         || !Messages.locales.containsKey(locale) 
+         || Messages.locales.get(locale).size() == 0)
+           return Messages.defaults;
+       return Messages.locales.get(locale);
     }
 
 }
